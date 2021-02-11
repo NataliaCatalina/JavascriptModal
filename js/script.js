@@ -1,52 +1,107 @@
 'use strict';
 
-//gain reference to when the user submits the form
-        //capture form input values
-        //test the values
-            //if values are clear 
-                //send feedback
-            //send to database
-                //else send error feedback
+// const constantVariable = 100;
+// let  letVariable = 100;
+
+// console.log(letVariable = 200);
+// console.log(letVariable);
+
+// //ternary operator
+// if(letVariable >=300){
+//     console.log(true);
+// } else {
+//     console.log(false);
+// }
+
+// //logical operator
+// /* 
+// AND &&
+// OR ||
+// NOT !
+// */
+
+// // comparison operators
+// /* 
+// >= Greater than or equal to
+// == equality operator
+// .. 
+// */
+
+// //condition ? truthy value : falsy value
+// const variableOne = letVariable >= 100 ? console.log('true') : console.log('false');
+
+// if(true) console.log('hi');
+
+// //a function declaration
+// function myFunction (){
+//     return true;
+// }
+
+// // a function expression
+// let functionExpresion = function myFunctionTwo() {
+//     return true;
+// }
+
+// //arrow function 
+// const arrowFunction = parameterOne => { return true };
+
+// document.getElementById('header').innerHTML = 'hello'
+
+// //ES6 methods of query selection and changing content
+// document.querySelector('#header').textContent = 'hey';
+
+// // let randomNumber = Math.random () * 100
+// // console.log(randomNumber);
+
+// let randomNumber = Math.trunc(Math.random () * 100)
+// console.log(randomNumber);
+
+// //object methods
+
+// // let objectMethods = {
+// //     firstName: 'Natalia',
+// //     lastName: 'Ramirez',
+// //     pets: ['hera','jess']
+// //     gretting: function (){
+// //         console.log('hello there');
+
+// //     }
+// // }
+// // console.log(objectMethods.greeting());
+
+//gather our references
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.close-modal');
+const btnsOpenModal = document.querySelectorAll('.show-modal');
+
+console.log(btnsOpenModal);
 
 
+//create open and close function 
+const openModal = function () {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden')
+}
 
- //gain reference to when the user submits the form
- document.querySelector('#submitBtn').addEventListener('click', function(event) {
-    event.preventDefault(); //stop the default page from loading
+const closeModal = function () {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+    console.log('test');
 
-     //capture form input values
-     let firstName = document.querySelector('#firstName').value;
-     let emailName = document.querySelector('#email').value;
-     let passwordName = document.querySelector('#password').value;
+}
 
-     //get reference to our error tags
-     let firstNameError = document.querySelector('#firstNameError');
-     let emailError = document.querySelector('#emailError');
+//loop through the button and add an event listener to each
+for (let i=0;i < btnsOpenModal.length; i++)
+    btnsOpenModal[i].addEventListener('click', openModal);
 
-     console.log(firstName, emailName, passwordName);
-     
+//create triggers
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
 
-      //test for empty values
-      if(firstName == '') {
-        firstNameError.textContent = "Please enter a First Name";
-    } else if(firstName.length >=40){
-        firstNameError.textContent = "Please enter a Shorter Name";
-    } else {
-        firstNameError.textContent = " ";
+document.addEventListener('keydown', function(e)  {
+    if(e.key === 'Escape' && !modal.classList.contains('hidden') ) {
+        closeModal();
     }
 
-    if(emailName == '') {
-        emailError.textContent = "Please enter a Email";
-    } else {
-        emailError.textContent = " ";
-    }
-
-    if(passwordName == '') {
-        console.log('please enter a password');
-    } else {
-        console.log('database ready');
-    }
-
-
- } );
-    
+}); 
